@@ -3,10 +3,10 @@
 using namespace std;
 
 class Computer {
+    public:
     int price, width, height, depth;
 
-    public:
-        Computer() {
+    Computer() {
             price = 1000;
             width = 100;
             height = 100;
