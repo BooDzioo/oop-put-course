@@ -15,6 +15,7 @@ private:
 public:
     Collection(string _name, string _firstLanguage, string _secondLanguage);
     vector<Card> cardsList();
+    string currentLanguage();
     void readCards();
     void performMemoization();
     void toggleCurrentLanguage();

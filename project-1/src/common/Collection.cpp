@@ -16,6 +16,10 @@ vector<Card> Collection::cardsList() {
     return this->cards;
 }
 
+string Collection::currentLanguage() {
+    return this->languages.at(this->currentLanguageIndex);
+}
+
 void Collection::readCards() {
     while(true) {
         string firstConcept, secondConcept;
@@ -37,7 +41,17 @@ void Collection::readCards() {
 }
 
 void Collection::performMemoization() {
+    for(int i = 1; i <= this->cards.size(); i++) {
+        int input;
 
+        cout << i << "." << endl;
+        cout << "[" << this->currentLanguage() << "] " << this->cards.at(i-1).currentConcept(this->currentLanguageIndex);
+
+        cin >> input;
+
+        this->toggleCurrentLanguage();
+        cout << "[" << this->currentLanguage() << "] " << this->cards.at(i-1).currentConcept(this->currentLanguageIndex);
+    }
 }
 
 void Collection::toggleCurrentLanguage() {
