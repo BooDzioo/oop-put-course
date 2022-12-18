@@ -11,6 +11,10 @@ vector<string> Card::conceptsList() {
     return this->concepts;
 }
 
+string Card::currentConcept(int currentConceptIndex) {
+    return this->concepts.at(currentConceptIndex);
+}
+
 void Card::printCurrentConcept(int currentConceptIndex) {
     cout << this->concepts.at(currentConceptIndex) << endl;
 }

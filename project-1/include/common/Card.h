@@ -9,5 +9,6 @@ private:
 public:
     Card(string _firstConcept, string _secondConcept);
     vector<string> conceptsList();
+    string currentConcept(int currentConceptIndex);
     void printCurrentConcept(int currentConceptIndex);
 };
