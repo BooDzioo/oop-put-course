@@ -42,15 +42,15 @@ void Collection::readCards() {
 
 void Collection::performMemoization() {
     for(int i = 1; i <= this->cards.size(); i++) {
-        int input;
+        string input;
 
         cout << i << "." << endl;
-        cout << "[" << this->currentLanguage() << "] " << this->cards.at(i-1).currentConcept(this->currentLanguageIndex);
+        cout << "[" << this->currentLanguage() << "] " << this->cards.at(i-1).currentConcept(this->currentLanguageIndex) << endl;
 
         cin >> input;
 
         this->toggleCurrentLanguage();
-        cout << "[" << this->currentLanguage() << "] " << this->cards.at(i-1).currentConcept(this->currentLanguageIndex);
+        cout << "[" << this->currentLanguage() << "] " << this->cards.at(i-1).currentConcept(this->currentLanguageIndex) << endl;
     }
 }
 
