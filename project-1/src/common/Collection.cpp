@@ -23,20 +23,20 @@ string Collection::currentLanguage() {
 void Collection::readCards() {
     while(true) {
         string firstConcept, secondConcept;
-        int shouldAddNext;
+        char shouldAddNext;
 
-        cout << "Podaj slowo w jezyku " << this->languages.at(0);
+        cout << "Podaj slowo w jezyku " << this->languages.at(0) << endl;
         cin >> firstConcept;
-        cout << "Podaj slowo w jezyku " << this->languages.at(1);
+        cout << "Podaj slowo w jezyku " << this->languages.at(1) << endl;
         cin >> secondConcept;
 
         Card newCard = Card(firstConcept, secondConcept);
         this->cards.push_back(newCard);
 
-        cout << "Dodac nastepne slowo? Wcisnij 0 zeby zakonczyc dodawanie lub cokolwiek innego zeby kontynuowac" << endl;
+        cout << "Dodac nastepne slowo? [y/n]" << endl;
         cin >> shouldAddNext;
 
-        if(shouldAddNext == 0) return;
+        if(shouldAddNext != 'y') return;
     }
 }
 
@@ -47,10 +47,14 @@ void Collection::performMemoization() {
         cout << i << "." << endl;
         cout << "[" << this->currentLanguage() << "] " << this->cards.at(i-1).currentConcept(this->currentLanguageIndex) << endl;
 
+        cout << "Pokazac druga strone?[y]" << endl;
         cin >> input;
 
         this->toggleCurrentLanguage();
         cout << "[" << this->currentLanguage() << "] " << this->cards.at(i-1).currentConcept(this->currentLanguageIndex) << endl;
+
+        cout << "Pokazac kolejna karte?[y]" << endl;
+        cin >> input;
     }
 }
 
@@ -68,7 +72,6 @@ void Collection::printSummary() {
 }
 
 void Collection::printEntities() {
-    cout << "printEntities" << this->cards.size() << endl;
     for(int i = 1; i <= this->cards.size(); i++) {
         vector<string> concepts = this->cards[i-1].conceptsList();
 
