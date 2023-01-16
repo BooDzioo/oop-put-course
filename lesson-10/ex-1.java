@@ -2,10 +2,6 @@ interface Sequence {
     String printedSeq();
 }
 
-interface SequenceDecorator{
-    Sequence printedSeq();
-}
-
 class Characters implements Sequence {
     private String text;
 
@@ -19,7 +15,7 @@ class Characters implements Sequence {
     }
 }
 
-class LowerCased implements SequenceDecorator {
+class LowerCased implements Sequence {
     private Sequence characters;
 
     LowerCased(Sequence _characters) {
@@ -27,12 +23,12 @@ class LowerCased implements SequenceDecorator {
     };
 
     @Override
-    public Sequence printedSeq() {
-        return new Characters(this.characters.printedSeq().toLowerCase());
+    public String printedSeq() {
+        return this.characters.printedSeq().toLowerCase();
     }
 }
 
-class Substring implements SequenceDecorator {
+class Substring implements Sequence {
     private Sequence characters;
     private int begin;
     private int end;
@@ -44,12 +40,12 @@ class Substring implements SequenceDecorator {
     };
 
     @Override
-    public Sequence printedSeq() {
-        return new Characters(this.characters.printedSeq().substring(begin, end));
+    public String printedSeq() {
+        return this.characters.printedSeq().substring(begin, end);
     }
 }
 
-class Concatenation implements SequenceDecorator {
+class Concatenation implements Sequence {
     private Sequence characters1;
     private Sequence characters2;
 
@@ -59,14 +55,18 @@ class Concatenation implements SequenceDecorator {
     };
 
     @Override
-    public Sequence printedSeq() {
-        return new Characters(this.characters1.printedSeq() + this.characters2.printedSeq());
+    public String printedSeq() {
+        return this.characters1.printedSeq() + this.characters2.printedSeq();
     }
 }
 
 class Ex1 {
     public static void main(String[] args) {
-        Sequence chars = new Substring(new LowerCased(new Concatenation(new Characters("Abcd"), new Characters("Efgh")).printedSeq()).printedSeq(), 0, 5).printedSeq();
+        Sequence chars = new Substring(
+                    new LowerCased(
+                        new Concatenation(new Characters("Abcd"), new Characters("Efgh"))
+                    ),
+                0, 5);
 
         System.out.println(chars.printedSeq());
     }
